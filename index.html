@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Dynamic Call Method</title>
+<meta http-equiv="Content-Language" content="ja">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/outer.js"></script>
+<style>
+<!--
+-->
+</style>
+<script type="text/javascript">
+$(function(){
+	$('.anchor').click(function(){
+		var _this = this;
+		var $parent = $(_this).parent('div');
+		var parentID = $parent.attr('id');
+		$(_this).remove();
+		var $script = $('<script>').attr('type', 'text/javascript');
+		$script.html('createParagraph("' + parentID + '");');
+		$parent.append($script);
+	});
+});
+</script>
+</head>
+<body>
+	<div id="main">
+		<div class="block" id="parent1">
+			<a href="#" class="anchor">Link 1</a>
+		</div>
+		<div class="block" id="parent2">
+			<a href="#" class="anchor">Link 2</a>
+		</div>
+		<div class="block" id="parent3">
+			<a href="#" class="anchor">Link 3</a>
+		</div>
+	</div>
+</body>
+</html>
